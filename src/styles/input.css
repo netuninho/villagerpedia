@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-darkVanilla: #DECOAE;
+  --color-parrotPink: #D4949D;
+  --color-liberty: #5C63A4;
+  --color-lavenderPurple: #8B7FAC;
+  --color-cadetBlue: #ACB0CC;
+}
