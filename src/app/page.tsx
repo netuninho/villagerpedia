@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import FilterGroup from "@/components/FilterGroup";
 import Pagination from "@/components/Pagination";
 import VillagerCard from "@/components/VillagerCard";
+import VillagerModal from "@/components/VillagerModal";
 import { getVillagers } from "@/lib/api";
 import type { Villager } from "@/types/villager";
 
@@ -11,6 +12,9 @@ export default function Home() {
   const [villagers, setVillagers] = useState<Villager[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [selectedVillager, setSelectedVillager] = useState<Villager | null>(
+    null,
+  );
 
   const itemsPerPage = 20;
 
@@ -64,7 +68,11 @@ export default function Home() {
         ) : (
           <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
             {villagersToShow.map((v) => (
-              <VillagerCard key={v.name} villager={v} />
+              <VillagerCard
+                key={v.name}
+                villager={v}
+                onClick={() => setSelectedVillager(v)}
+              />
             ))}
           </div>
         )}
@@ -76,6 +84,13 @@ export default function Home() {
           onPageChange={setPage}
         />
       </section>
+
+      {selectedVillager && (
+        <VillagerModal
+          villager={selectedVillager}
+          onClose={() => setSelectedVillager(null)}
+        />
+      )}
     </main>
   );
 }

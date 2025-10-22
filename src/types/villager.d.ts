@@ -3,7 +3,12 @@ export interface Villager {
   species: string;
   personality: string;
   image_url: string;
-  birthday: string;
-  hobby: string;
-  catchphrase: string;
+  birthday_month: string;
+  birthday_day: string;
+  sign: string;
+  clothing: string;
+  phrase: string;
+  quote: string;
+  gender: string;
+  debut: string;
 }
