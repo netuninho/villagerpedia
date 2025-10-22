@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
 @theme {
+  /* Light Mode */
   --color-darkVanilla: #DECOAE;
   --color-parrotPink: #D4949D;
   --color-liberty: #5C63A4;
   --color-lavenderPurple: #8B7FAC;
   --color-cadetBlue: #ACB0CC;
+  --color-softMist: #E5E8F0;
+
+  /* Dark Theme */
+  --color-darkBg: #1E1B24;
+  --color-darkSurface: #3B3354;
+  --color-darkText: #EAE6F1;
+  --color-darkAccent: #FFBFD9;
 }

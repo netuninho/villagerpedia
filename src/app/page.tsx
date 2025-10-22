@@ -1,6 +1,10 @@
 import FilterGroup from "@/components/FilterGroup";
+import VillagerCard from "@/components/VillagerCard";
+import { getVillagers } from "@/lib/api";
 
-export default function Home() {
+export default async function Home() {
+  const villagers = await getVillagers();
+
   return (
     <main className="flex flex-col md:flex-row min-h-screen bg-darkVanilla text-liberty">
 
@@ -37,15 +41,8 @@ export default function Home() {
 
         {/* Card of villagers */}
         <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
-          {[...Array(12)].map((_, i) => (
-            <div
-              key={i}
-              className="bg-lavenderPurple cursor-pointer rounded-2xl p-4 text-center shadow-md hover:shadow-lg hover:scale-[1.05] transition-all duration-200 ease-in-out"
-            >
-              <div className="mx-auto w-24 h-24 rounded-full bg-cadetBlue mb-3" />
-              <h2 className="text-darkVanilla text-lg font-semibold">Name</h2>
-              <p className="text-parrotPink text-sm">Personality</p>
-            </div>
+          {villagers.map((v) => (
+            <VillagerCard key={v.name} villager={v}/>
           ))}
         </div>
 
