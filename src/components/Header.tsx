@@ -9,11 +9,11 @@ export default function Header(){
      <nav aria-label="Main menu">
       <ul className="flex gap-6 text-liberty font-medium">
         <li>
-          <a href="/" rel="noopener noreferrer" target="_blank" className="hover:text-parrotPink transition-colors duration-200">Home</a>
+          <a href="/" className="hover:text-parrotPink transition-colors duration-200">Home</a>
         </li>
 
         <li>
-          <a href="/about" rel="noopener noreferrer" target="_blank" className="hover:text-parrotPink transition-colors duration-200">About</a>
+          <a href="/about" className="hover:text-parrotPink transition-colors duration-200">About</a>
         </li>
 
         <li>
