@@ -13,7 +13,7 @@ export async function getVillagers(): Promise<Villager[]>{
         "X-API-KEY": apiKey,
         "Accept-Version": "1.0.0",
       },
-      next: { revalidate: 3600 },
+      next: { revalidate: 86400 },
     });
 
     if (!res.ok) {
