@@ -1,6 +1,6 @@
 import type { Villager } from "@/types/villager";
 
-export async function getVillagers(): Promise<Villager[]>{
+export async function getVillagers(): Promise<Villager[]> {
   const apiKey = process.env.NEXT_PUBLIC_NOOK_KEY;
 
   if (!apiKey) {
@@ -8,7 +8,7 @@ export async function getVillagers(): Promise<Villager[]>{
   }
 
   try {
-    const res = await fetch("https://api.nookipedia.com/villagers?game=nh", {
+    const res = await fetch(`https://api.nookipedia.com/villagers?game=nh`, {
       headers: {
         "X-API-KEY": apiKey,
         "Accept-Version": "1.0.0",
@@ -21,8 +21,9 @@ export async function getVillagers(): Promise<Villager[]>{
     }
 
     return res.json();
-
   } catch (error) {
-    throw new Error(`Erro ao buscar villagers: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
+    throw new Error(
+      `Erro ao buscar villagers: ${error instanceof Error ? error.message : "Erro desconhecido"}`,
+    );
   }
 }

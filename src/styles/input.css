@@ -2,16 +2,33 @@
 
 @theme {
   /* Light Mode */
-  --color-darkVanilla: #DECOAE;
-  --color-parrotPink: #D4949D;
-  --color-liberty: #5C63A4;
-  --color-lavenderPurple: #8B7FAC;
-  --color-cadetBlue: #ACB0CC;
-  --color-softMist: #E5E8F0;
+  --color-darkVanilla: #dec OAE;
+  --color-parrotPink: #d4949d;
+  --color-liberty: #5c63a4;
+  --color-lavenderPurple: #8b7fac;
+  --color-cadetBlue: #acb0cc;
+  --color-softMist: #e5e8f0;
 
   /* Dark Theme */
-  --color-darkBg: #1E1B24;
-  --color-darkSurface: #3B3354;
-  --color-darkText: #EAE6F1;
-  --color-darkAccent: #FFBFD9;
+  --color-darkBg: #1e1b24;
+  --color-darkSurface: #3b3354;
+  --color-darkText: #eae6f1;
+  --color-darkAccent: #ffbfd9;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.25s ease-in-out;
+  }
 }
