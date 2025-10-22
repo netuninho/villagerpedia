@@ -1,31 +1,50 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import FilterGroup from "@/components/FilterGroup";
+import Pagination from "@/components/Pagination";
 import VillagerCard from "@/components/VillagerCard";
 import { getVillagers } from "@/lib/api";
+import type { Villager } from "@/types/villager";
 
-export default async function Home() {
-  const villagers = await getVillagers();
+export default function Home() {
+  const [villagers, setVillagers] = useState<Villager[]>([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  const itemsPerPage = 20;
+
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+
+      try {
+        const data = await getVillagers();
+        setVillagers(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const villagersToShow = villagers.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(villagers.length / itemsPerPage);
 
   return (
     <main className="flex flex-col md:flex-row min-h-screen bg-darkVanilla text-liberty">
-
       {/* Sidebar / Filters */}
       <aside className="w-full md:w-1/4 p-6 border-b md:border-b-0 md:border-r border-cadetBlue bg-lavenderPurple/30">
         <h2 className="text-xl font-semibold mb-6 text-liberty">Filters</h2>
 
-        <FilterGroup
-          title="Species"
-          options={["All", "Cat", "Dog"]}
-        />
-
-        <FilterGroup
-          title="Personality"
-          options={["All", "Cat", "Dog"]}
-        />
-
-        <FilterGroup
-          title="Hobby"
-          options={["All", "Cat", "Dog"]}
-        />
+        <FilterGroup title="Species" options={["All", "Cat", "Dog"]} />
+        <FilterGroup title="Personality" options={["All", "Lazy", "Cranky"]} />
+        <FilterGroup title="Hobby" options={["All", "Play", "Fashion"]} />
       </aside>
 
       {/* Main content */}
@@ -39,25 +58,23 @@ export default async function Home() {
           />
         </div>
 
-        {/* Card of villagers */}
-        <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
-          {villagers.map((v) => (
-            <VillagerCard key={v.name} villager={v}/>
-          ))}
-        </div>
+        {/* Cards */}
+        {loading ? (
+          <p className="text-center text-parrotPink">Loading villagers...</p>
+        ) : (
+          <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+            {villagersToShow.map((v) => (
+              <VillagerCard key={v.name} villager={v} />
+            ))}
+          </div>
+        )}
 
         {/* Pagination */}
-        <div className="flex justify-center gap-2 mt-10">
-          {[1, 2, 3, 4, 5].map((n) => (
-            <button
-              key={n}
-              type="button"
-              className="px-4 py-2 rounded-full cursor-pointer bg-cadetBlue text-darkVanilla hover:bg-liberty hover:text-parrotPink transition-all"
-            >
-              {n}
-            </button>
-          ))}
-        </div>
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
       </section>
     </main>
   );
