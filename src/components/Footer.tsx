@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-16 py-8 text-center border-t border-cadetBlue bg-lavenderPurple/10 text-liberty">
+    <footer className="py-8 text-center border-t border-cadetBlue bg-lavenderPurple/10 text-liberty">
       <p>Code with heart. Design with purpose</p>
 
       <p>
