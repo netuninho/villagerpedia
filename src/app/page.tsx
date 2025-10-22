@@ -48,7 +48,6 @@ export default function Home() {
 
         <FilterGroup title="Species" options={["All", "Cat", "Dog"]} />
         <FilterGroup title="Personality" options={["All", "Lazy", "Cranky"]} />
-        <FilterGroup title="Hobby" options={["All", "Play", "Fashion"]} />
       </aside>
 
       {/* Main content */}
