@@ -73,16 +73,13 @@ export default function VillagerModal({ villager, onClose }: Props) {
             <div className="flex items-center justify-center gap-10">
               <div className="[&_p_span]:font-semibold [&_p]:mb-1 whitespace-nowrap">
                 <p>
-                  <span>Personality:</span>{" "}
-                  {villager.personality}
+                  <span>Personality:</span> {villager.personality}
                 </p>
                 <p>
-                  <span>Species:</span>{" "}
-                  {villager.species}
+                  <span>Species:</span> {villager.species}
                 </p>
                 <p>
-                  <span>Gender:</span>{" "}
-                  {villager.gender}
+                  <span>Gender:</span> {villager.gender}
                 </p>
                 <p>
                   <span>Debut:</span> {villager.debut}
@@ -91,19 +88,17 @@ export default function VillagerModal({ villager, onClose }: Props) {
 
               <div className="[&_p_span]:font-semibold [&_p]:mb-1 whitespace-nowrap">
                 <p>
-                  <span>Birthday:</span>{" "}
-                  {villager.birthday_month} {villager.birthday_day}
+                  <span>Birthday:</span> {villager.birthday_month}{" "}
+                  {villager.birthday_day}
                 </p>
                 <p>
                   <span>Zodiac:</span> {villager.sign}
                 </p>
                 <p>
-                  <span>Clothing:</span>{" "}
-                  {villager.clothing}
+                  <span>Clothing:</span> {villager.clothing}
                 </p>
                 <p>
-                  <span>Phrase:</span>{" "}
-                  "{villager.phrase}""
+                  <span>Phrase:</span> "{villager.phrase}""
                 </p>
               </div>
             </div>
