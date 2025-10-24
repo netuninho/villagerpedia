@@ -93,21 +93,25 @@ export default function Home() {
     <main className="flex flex-col md:flex-row min-h-screen bg-darkVanilla text-liberty">
       {/* Sidebar / Filters */}
       <aside className="w-full md:w-1/4 p-6 border-b md:border-b-0 md:border-r border-cadetBlue bg-lavenderPurple/30">
-        <h2 className="text-xl font-semibold mb-6 text-liberty">Filters</h2>
+        <h2 className="text-xl text-center font-semibold mb-6 text-liberty">
+          Filters
+        </h2>
 
-        <FilterGroup
-          title="Species"
-          options={allSpecies}
-          selected={selectedSpecies}
-          onChange={setSelectedSpecies}
-        />
+        <div className="flex gap-20 ml-10">
+          <FilterGroup
+            title="Species"
+            options={allSpecies}
+            selected={selectedSpecies}
+            onChange={setSelectedSpecies}
+          />
 
-        <FilterGroup
-          title="Personality"
-          options={allPersonalities}
-          selected={selectedPersonality}
-          onChange={setSelectedPersonality}
-        />
+          <FilterGroup
+            title="Personality"
+            options={allPersonalities}
+            selected={selectedPersonality}
+            onChange={setSelectedPersonality}
+          />
+        </div>
 
         {/* Botões */}
         <div className="flex flex-col sm:flex-row gap-3 mt-6">
