@@ -97,7 +97,7 @@ export default function Home() {
           Filters
         </h2>
 
-        <div className="flex gap-20 ml-10">
+        <div className="lg:flex gap-20 ml-10">
           <FilterGroup
             title="Species"
             options={allSpecies}
