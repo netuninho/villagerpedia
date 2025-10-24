@@ -14,6 +14,18 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [allSpecies, setAllSpecies] = useState<string[]>([]);
+  const [allPersonalities, setAllPersonalities] = useState<string[]>([]);
+  const [selectedSpecies, setSelectedSpecies] = useState<string[]>([]);
+  const [selectedPersonality, setSelectedPersonality] = useState<string[]>([]);
+  const [appliedFilters, setAppliedFilters] = useState<{
+    species: string[];
+    personality: string[];
+  }>({
+    species: [],
+    personality: [],
+  });
+
   const [selectedVillager, setSelectedVillager] = useState<Villager | null>(
     null,
   );
@@ -25,6 +37,15 @@ export default function Home() {
       try {
         const data = await getVillagers();
         setVillagers(data);
+        const speciesList = Array.from(
+          new Set(data.map((v) => v.species)),
+        ).sort();
+        const personalityList = Array.from(
+          new Set(data.map((v) => v.personality)),
+        ).sort();
+
+        setAllSpecies(speciesList);
+        setAllPersonalities(personalityList);
       } catch (error) {
         console.error(error);
       } finally {
@@ -42,14 +63,25 @@ export default function Home() {
 
   const filteredVillagers = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
-    if (!term) return villagers;
-    return villagers.filter(
-      (v) =>
+
+    return villagers.filter((v) => {
+      const matchesSearch =
+        !term ||
         v.name.toLowerCase().includes(term) ||
         v.species.toLowerCase().includes(term) ||
-        v.personality.toLowerCase().includes(term),
-    );
-  }, [villagers, searchTerm]);
+        v.personality.toLowerCase().includes(term);
+
+      const matchesSpecies =
+        appliedFilters.species.length === 0 ||
+        appliedFilters.species.includes(v.species);
+
+      const matchesPersonality =
+        appliedFilters.personality.length === 0 ||
+        appliedFilters.personality.includes(v.personality);
+
+      return matchesSearch && matchesSpecies && matchesPersonality;
+    });
+  }, [villagers, searchTerm, appliedFilters]);
 
   const itemsPerPage = 20;
   const totalPages = Math.ceil(filteredVillagers.length / itemsPerPage);
@@ -63,8 +95,47 @@ export default function Home() {
       <aside className="w-full md:w-1/4 p-6 border-b md:border-b-0 md:border-r border-cadetBlue bg-lavenderPurple/30">
         <h2 className="text-xl font-semibold mb-6 text-liberty">Filters</h2>
 
-        <FilterGroup title="Species" options={["All", "Cat", "Dog"]} />
-        <FilterGroup title="Personality" options={["All", "Lazy", "Cranky"]} />
+        <FilterGroup
+          title="Species"
+          options={allSpecies}
+          selected={selectedSpecies}
+          onChange={setSelectedSpecies}
+        />
+
+        <FilterGroup
+          title="Personality"
+          options={allPersonalities}
+          selected={selectedPersonality}
+          onChange={setSelectedPersonality}
+        />
+
+        {/* Botões */}
+        <div className="flex flex-col sm:flex-row gap-3 mt-6">
+          <button
+            type="button"
+            onClick={() =>
+              setAppliedFilters({
+                species: selectedSpecies,
+                personality: selectedPersonality,
+              })
+            }
+            className="flex-1 bg-parrotPink text-darkVanilla font-semibold py-2 rounded-lg hover:bg-liberty transition-all hover:text-parrotPink cursor-pointer"
+          >
+            Apply Filters
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedSpecies([]);
+              setSelectedPersonality([]);
+              setAppliedFilters({ species: [], personality: [] });
+            }}
+            className="flex-1 bg-cadetBlue/40 text-liberty font-medium py-2 rounded-lg hover:bg-cadetBlue/60 transition-all hover:text-parrotPink cursor-pointer"
+          >
+            Clear
+          </button>
+        </div>
       </aside>
 
       {/* Main content */}

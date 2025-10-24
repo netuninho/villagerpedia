@@ -1,9 +1,24 @@
 interface FilterGroupProps {
   title: string;
   options: string[];
+  selected: string[];
+  onChange: (selected: string[]) => void;
 }
 
-export default function FilterGroup({ title, options }: FilterGroupProps) {
+export default function FilterGroup({
+  title,
+  options,
+  selected,
+  onChange,
+}: FilterGroupProps) {
+  function handleCheckboxChange(option: string) {
+    if (selected.includes(option)) {
+      onChange(selected.filter((item) => item !== option));
+    } else {
+      onChange([...selected, option]);
+    }
+  }
+
   return (
     <div className="mb-6">
       <h3 className="text-liberty font-medium mb-2">{title}</h3>
@@ -15,6 +30,8 @@ export default function FilterGroup({ title, options }: FilterGroupProps) {
           >
             <input
               type="checkbox"
+              checked={selected.includes(option)}
+              onChange={() => handleCheckboxChange(option)}
               className="accent-parrotPink w-4 h-4 rounded-md border-cadetBlue cursor-pointer"
             />
             <span>{option}</span>
