@@ -123,7 +123,7 @@ export default function Home() {
                 personality: selectedPersonality,
               })
             }
-            className="flex-1 bg-parrotPink text-darkVanilla font-semibold py-2 rounded-lg hover:bg-liberty transition-all hover:text-parrotPink cursor-pointer"
+            className="flex-1 bg-parrotPink text-black py-2 hover:bg-liberty transition-all hover:text-parrotPink cursor-pointer border-liberty border rounded-full"
           >
             Apply Filters
           </button>
@@ -135,7 +135,7 @@ export default function Home() {
               setSelectedPersonality([]);
               setAppliedFilters({ species: [], personality: [] });
             }}
-            className="flex-1 bg-cadetBlue/40 text-liberty font-medium py-2 rounded-lg hover:bg-cadetBlue/60 transition-all hover:text-parrotPink cursor-pointer"
+            className="flex-1 bg-white/20 text-black font-medium py-2 hover:bg-cadetBlue/40 transition-all cursor-pointer border-liberty border rounded-full"
           >
             Clear
           </button>

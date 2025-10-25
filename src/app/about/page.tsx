@@ -11,10 +11,10 @@ export default function AboutPage() {
         <h1 className="text-4xl font-bold mb-4 text-liberty">
           About Villagerpedia
         </h1>
-        <p className="text-lg text-cadetBlue text-balance mb-8">
+        <p className="text-lg text-black/70 mb-8">
           Villagerpedia is a personal project built with love using{" "}
-          <span className="text-parrotPink font-semibold">Next.js</span> and{" "}
-          <span className="text-parrotPink font-semibold">Tailwind</span>
+          <span className="font-semibold">Next.js</span> and{" "}
+          <span className="font-semibold">Tailwind</span>
           . It serves as an interactive encyclopedia for Animal Crossing
           villagers, combining accessibility, design, and creativity into one
           cozy experience.
@@ -30,7 +30,7 @@ export default function AboutPage() {
               href="https://api.nookipedia.com/doc"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-parrotPink underline hover:text-liberty transition-all"
+              className="text-black/70 underline hover:text-liberty transition-all"
             >
               Nookipedia API
             </a>
@@ -45,7 +45,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="text-left mt-8 bg-lavenderPurple/30 rounded-3xl p-6 shadow-md space-y-4 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-parrotPink">
+        <div className="text-left mt-8 bg-softMist rounded-3xl p-6 shadow-md space-y-4 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-parrotPink">
           <h2 className="text-2xl font-semibold text-liberty mb-2">
             Project Goals
           </h2>

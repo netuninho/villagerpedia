@@ -31,7 +31,7 @@ export default function Pagination({
           type="button"
           disabled={page === 1}
           onClick={() => onPageChange(page - 1)}
-          className="px-4 py-2 rounded-full bg-cadetBlue text-darkVanilla hover:bg-liberty hover:text-parrotPink transition-all disabled:opacity-50 disabled:cursor-default cursor-pointer"
+          className="px-4 py-2 rounded-full bg-cadetBlue text-black hover:bg-liberty/70 transition-all disabled:opacity-50 disabled:cursor-default cursor-pointer"
         >
           ← Prev
         </button>
@@ -44,7 +44,7 @@ export default function Pagination({
           type="button"
           disabled={page === totalPages}
           onClick={() => onPageChange(page + 1)}
-          className="px-4 py-2 rounded-full bg-cadetBlue text-darkVanilla hover:bg-liberty hover:text-parrotPink transition-all disabled:opacity-50 disabled:cursor-default cursor-pointer"
+          className="px-4 py-2 rounded-full bg-cadetBlue text-black hover:bg-liberty/70 transition-all disabled:opacity-50 disabled:cursor-default cursor-pointer"
         >
           Next →
         </button>
