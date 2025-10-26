@@ -28,6 +28,15 @@ export default function Header() {
 
           <li>
             <a
+              href="/favorites"
+              className="hover:text-parrotPink transition-colors duration-200"
+            >
+              Favorites
+            </a>
+          </li>
+
+          <li>
+            <a
               href="https://api.nookipedia.com"
               rel="noopener noreferrer"
               target="_blank"

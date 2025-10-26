@@ -14,10 +14,9 @@ export default function AboutPage() {
         <p className="text-lg text-black/70 mb-8">
           Villagerpedia is a personal project built with love using{" "}
           <span className="font-semibold">Next.js</span> and{" "}
-          <span className="font-semibold">Tailwind</span>
-          . It serves as an interactive encyclopedia for Animal Crossing
-          villagers, combining accessibility, design, and creativity into one
-          cozy experience.
+          <span className="font-semibold">Tailwind</span>. It serves as an
+          interactive encyclopedia for Animal Crossing villagers, combining
+          accessibility, design, and creativity into one cozy experience.
         </p>
 
         <div className="text-left bg-softMist rounded-3xl p-6 shadow-md space-y-4 transition-all duration-200 hover:scale-105">
