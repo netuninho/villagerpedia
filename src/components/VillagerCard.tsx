@@ -1,8 +1,9 @@
+/** biome-ignore-all lint/a11y/useSemanticElements: <explanation> */
 "use client";
 
 import Image from "next/image";
-import type { Villager } from "@/types/villager";
 import { useEffect, useState } from "react";
+import type { Villager } from "@/types/villager";
 
 interface Props {
   villager: Villager;
@@ -35,17 +36,18 @@ export default function VillagerCard({ villager, onClick }: Props) {
   }
 
   return (
-    <button
-      onClick={onClick}
-      type="button"
+    <div
+      role="button"
       tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => e.key === "Enter" && onClick?.()}
       className="relative bg-softMist rounded-2xl p-4 text-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-parrotPink cursor-pointer"
     >
       <button
         type="button"
         onClick={toggleFavorite}
         aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-        className={`absolute top-3 right-3 text-xl transition-all duration-200 ${
+        className={`absolute top-3 right-3 text-xl transition-all duration-200 cursor-pointer ${
           isFavorite
             ? "text-parrotPink scale-110"
             : "text-cadetBlue hover:text-parrotPink"
@@ -68,6 +70,6 @@ export default function VillagerCard({ villager, onClick }: Props) {
         {villager.name}
       </h2>
       <p className="text-parrotPink text-sm">{villager.personality}</p>
-    </button>
+    </div>
   );
 }
